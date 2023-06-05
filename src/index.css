@@ -1,13 +1,15 @@
 :root {
-  --background-primary: '#FFFAFF';
-  --background-secondary: '#E6DBD0';
-  --primary: '#04151F';
-  --secondary: '#657ED4';
-  --tertiary: '#D33F49';
+  --background-primary: #FFFAFF;
+  --background-secondary: #E6DBD0;
+  --primary: #04151F;
+  --secondary: #657ED4;
+  --tertiary: #D33F49;
+  color: var(--primary);
 }
 
 body {
   margin: 0;
+  background-color: var(--background-primary);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
