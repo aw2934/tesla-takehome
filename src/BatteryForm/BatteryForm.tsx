@@ -1,8 +1,8 @@
-import React from 'react';
-import { BatteryData, FormData } from '../types';
+import React, { useEffect, useMemo } from 'react';
+import { BatteryData, DeviceName, FormData } from '../types';
 import Text from '../Text';
 import './BatteryForm.css';
-import { formatCurrency } from './utils';
+import { formatCurrency, getTransformerCount } from './utils';
 
 interface Props {
   order: FormData;
@@ -16,17 +16,49 @@ interface DeviceRowProps {
 }
 
 const BatteryForm: React.FC<Props> = ({ order, setOrder }) => {
+  useEffect(() => {
+    const numTransformers = getTransformerCount(order);
+    setOrder({
+      ...order,
+      [DeviceName.TRANSFORMER]: {
+        ...order[DeviceName.TRANSFORMER],
+        amount: numTransformers,
+      }
+    });
+  }, [
+    order[DeviceName.MEGAPACK_2XL],
+    order[DeviceName.MEGAPACK_2],
+    order[DeviceName.MEGAPACK],
+    order[DeviceName.POWERPACK],
+  ]);
+
   const orderValues = Object.entries(order);
 
   return (
     <div>
-      {orderValues.map(([deviceName, deviceData]) => (
-        <DeviceRow
-          deviceName={deviceName.toUpperCase()}
-          deviceData={deviceData}
-          onChange={() => null}
-        />
-      ))}
+      {orderValues.map(([deviceName, deviceData]) => {
+        const onChange = (value: string) => {
+          let numValue = Number(value);
+          if (Number.isNaN(numValue) || numValue < 0) numValue = 0;
+
+          setOrder({
+            ...order,
+            [deviceName]: {
+              ...order[deviceName as DeviceName],
+              amount: Number(value),
+            }
+          });
+        };
+
+        return (
+          <DeviceRow
+            key={deviceName}
+            deviceName={deviceName}
+            deviceData={deviceData}
+            onChange={onChange}
+          />
+        );
+      })}
     </div>
   );
 };
@@ -45,7 +77,7 @@ const DeviceRow: React.FC<DeviceRowProps> = ({
       {/* Top row: name and data */}
       {/* bottom row: image and amount */}
       <div className="device-row-top">
-        <Text variant="h2" style={{ width: '33%' }}>{deviceName}</Text>
+        <Text variant="h2" style={{ width: '33%' }}>{deviceName.toUpperCase()}</Text>
         <Text variant="h3" style={{ width: '25%' }}>{dimensions}</Text>
         <Text variant="h3">{energyOutput}</Text>
         <Text variant="h3" style={{ fontSize: '14px', flex: 1, textAlign: 'right' }}>{costPerUnit}</Text>
@@ -59,6 +91,9 @@ const DeviceRow: React.FC<DeviceRowProps> = ({
             className="input"
             value={deviceData.amount ?? 0}
             onChange={e => onChange(e.target.value)}
+            type="number"
+            min={0}
+            disabled={deviceName === DeviceName.TRANSFORMER}
           />
         </div>
       </div>
