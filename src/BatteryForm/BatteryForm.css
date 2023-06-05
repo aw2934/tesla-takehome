@@ -1,8 +1,14 @@
+.table-header {
+  display: flex;
+  margin-bottom: 8px;
+  padding-right: 16px;
+}
+
 .device-row {
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  border: 1px solid var(--background-primary);
+  border: 1px solid var(--tertiary);
   padding: 16px;
   margin-bottom: 16px;
 }

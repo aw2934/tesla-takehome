@@ -36,29 +36,37 @@ const BatteryForm: React.FC<Props> = ({ order, setOrder }) => {
 
   return (
     <div>
-      {orderValues.map(([deviceName, deviceData]) => {
-        const onChange = (value: string) => {
-          let numValue = Number(value);
-          if (Number.isNaN(numValue) || numValue < 0) numValue = 0;
+      <div className="table-header">
+        <div style={{ width: '33%' }} />
+        <Text variant="h3" style={{ width: '25%' }}>Dimensions</Text>
+        <Text variant="h3" style={{ flex: 1 }}>Energy Density</Text>
+        <Text variant="h3">Price</Text>
+      </div>
+      <>
+        {orderValues.map(([deviceName, deviceData]) => {
+          const onChange = (value: string) => {
+            let numValue = Number(value);
+            if (Number.isNaN(numValue) || numValue < 0) numValue = 0;
 
-          setOrder({
-            ...order,
-            [deviceName]: {
-              ...order[deviceName as DeviceName],
-              amount: Number(value),
-            }
-          });
-        };
+            setOrder({
+              ...order,
+              [deviceName]: {
+                ...order[deviceName as DeviceName],
+                amount: Number(value),
+              }
+            });
+          };
 
-        return (
-          <DeviceRow
-            key={deviceName}
-            deviceName={deviceName}
-            deviceData={deviceData}
-            onChange={onChange}
-          />
-        );
-      })}
+          return (
+            <DeviceRow
+              key={deviceName}
+              deviceName={deviceName}
+              deviceData={deviceData}
+              onChange={onChange}
+            />
+          );
+        })}
+      </>
     </div>
   );
 };
@@ -74,8 +82,6 @@ const DeviceRow: React.FC<DeviceRowProps> = ({
 
   return (
     <div className="device-row">
-      {/* Top row: name and data */}
-      {/* bottom row: image and amount */}
       <div className="device-row-top">
         <Text variant="h2" style={{ width: '33%' }}>{deviceName.toUpperCase()}</Text>
         <Text variant="h3" style={{ width: '25%' }}>{dimensions}</Text>
