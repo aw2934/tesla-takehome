@@ -1,0 +1,17 @@
+.order-totals {
+  padding: 16px;
+  background-color: var(--primary);
+  color: var(--background-primary);
+  flex: 1;
+  border-radius: 8px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.totals-data {
+  display: flex;
+  margin-top: 16px;
+}
+
+.totals-block {
+  margin-right: 40px;
+}

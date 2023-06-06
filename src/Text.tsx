@@ -3,7 +3,7 @@ import React from 'react';
 type Variant = 'body1' | 'body2' | 'h1' | 'h2' | 'h3';
 
 interface Props {
-  children: string;
+  children: string | number;
   variant?: Variant;
   style?: React.CSSProperties;
 }
