@@ -13,7 +13,7 @@ const VARIANT_STYLES = {
     fontSize: '12px',
   },
   body2: {
-    fontSize: '10px',
+    fontSize: '11px',
   },
   h1: {
     fontSize: '24px',

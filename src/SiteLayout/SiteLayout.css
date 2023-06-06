@@ -12,3 +12,14 @@
   margin-bottom: 4px;
   box-sizing: border-box;
 }
+
+.tooltip {
+  position: absolute;
+  z-index: 1;
+  background-color: #000;
+  color: #FFF;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  top: -50%;
+}
