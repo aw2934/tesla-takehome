@@ -3,6 +3,7 @@ import Text from '../../Text';
 import { BatteryData, DeviceName } from '../../types';
 import { formatCurrency } from '../utils';
 import './DeviceRow.css';
+import { BATTERY_COLOR_MAP } from '../../constants';
 
 interface Props {
   deviceName: string;
@@ -20,7 +21,12 @@ const DeviceRow: React.FC<Props> = ({
   const costPerUnit = `${formatCurrency(deviceData.cost)}/unit`
 
   return (
-    <div className="device-row">
+    <div
+      className="device-row"
+      style={{
+        border: `2px solid ${BATTERY_COLOR_MAP[deviceName as DeviceName]}`
+      }}
+    >
       <div className="device-row-top">
         <Text variant="h2" style={{ width: '33%' }}>{deviceName.toUpperCase()}</Text>
         <Text variant="h3" style={{ width: '25%' }}>{dimensions}</Text>

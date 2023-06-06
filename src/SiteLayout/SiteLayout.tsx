@@ -3,6 +3,7 @@ import './SiteLayout.css';
 import { LayoutData } from '../RightPane/utils';
 import { DeviceName } from '../types';
 import Text from '../Text';
+import { BATTERY_COLOR_MAP } from '../constants';
 
 interface Props {
   siteLayoutData: LayoutData[][];
@@ -14,7 +15,6 @@ interface LayoutItemProps {
 
 interface BaseItemProps extends LayoutItemProps {
   width: string;
-  backgroundColor: string;
 }
 
 const SiteLayout: React.FC<Props> = ({ siteLayoutData }) => {
@@ -36,26 +36,22 @@ const SiteLayout: React.FC<Props> = ({ siteLayoutData }) => {
 const LayoutItem: React.FC<LayoutItemProps> = ({ layoutItem }) => {
   switch (layoutItem.deviceName) {
     case DeviceName.MEGAPACK_2XL:
-      return <BaseItem width="40%" backgroundColor="#D33F49" layoutItem={layoutItem} />;
+      return <BaseItem width="40%" layoutItem={layoutItem} />;
     case DeviceName.MEGAPACK_2:
-      return <BaseItem width="30%" backgroundColor="#5C946E" layoutItem={layoutItem} />;
+      return <BaseItem width="30%" layoutItem={layoutItem} />;
     case DeviceName.MEGAPACK:
-      return <BaseItem width="30%" backgroundColor="#657ED4" layoutItem={layoutItem} />;
-    case DeviceName.POWERPACK: {
-      return <BaseItem width="10%" backgroundColor="#F6AE2D" layoutItem={layoutItem}/>;
-    }
+      return <BaseItem width="30%" layoutItem={layoutItem} />;
+    case DeviceName.POWERPACK:
+      return <BaseItem width="10%" layoutItem={layoutItem}/>;
     case DeviceName.TRANSFORMER:
     default:
-      return <BaseItem width="10%" backgroundColor="#605D53" layoutItem={layoutItem} />;  
+      return <BaseItem width="10%" layoutItem={layoutItem} />;  
   }
 }
 
-const BaseItem: React.FC<BaseItemProps> = ({
-  width,
-  backgroundColor,
-  layoutItem
-}) => {
+const BaseItem: React.FC<BaseItemProps> = ({ width, layoutItem }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const backgroundColor = BATTERY_COLOR_MAP[layoutItem.deviceName];
 
   return (
     <div
@@ -71,9 +67,12 @@ const BaseItem: React.FC<BaseItemProps> = ({
     >
       {isHovering && (
         <div className="tooltip">
-          <Text style={{ fontWeight: 600 }}>
-            {layoutItem.deviceName.toUpperCase()}
-          </Text>
+          <span style={{ display: 'flex', alignItems: 'center' }}>
+            <div className="tooltip-swatch" style={{ backgroundColor }} />
+            <Text style={{ fontWeight: 600 }}>
+              {layoutItem.deviceName.toUpperCase()}
+            </Text>
+          </span>
           <Text variant="body2" style={{ margin: '4px 0' }}>
             {`${layoutItem.width}FT x 10FT`}
           </Text>

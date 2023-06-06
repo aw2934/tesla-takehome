@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  border: 1px solid var(--tertiary);
   padding: 16px;
   margin-bottom: 16px;
 }
