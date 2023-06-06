@@ -1,0 +1,28 @@
+.device-row {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  border: 1px solid var(--tertiary);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.device-row-top {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.device-row-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.input {
+  margin-left: 8px;
+  height: 24px;
+  width: 64px;
+}

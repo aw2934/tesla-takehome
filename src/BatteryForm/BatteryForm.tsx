@@ -1,18 +1,13 @@
-import React, { useEffect, useMemo } from 'react';
-import { BatteryData, DeviceName, FormData } from '../types';
+import React, { useEffect } from 'react';
+import { DeviceName, FormData } from '../types';
 import Text from '../Text';
 import './BatteryForm.css';
-import { formatCurrency, getTransformerCount } from './utils';
+import { getTransformerCount } from './utils';
+import { DeviceRow } from './DeviceRow';
 
 interface Props {
   order: FormData;
   setOrder: React.Dispatch<React.SetStateAction<FormData>>
-}
-
-interface DeviceRowProps {
-  deviceName: string;
-  deviceData: BatteryData;
-  onChange: (value: string) => void;
 }
 
 const BatteryForm: React.FC<Props> = ({ order, setOrder }) => {
@@ -67,42 +62,6 @@ const BatteryForm: React.FC<Props> = ({ order, setOrder }) => {
           );
         })}
       </>
-    </div>
-  );
-};
-
-const DeviceRow: React.FC<DeviceRowProps> = ({
-  deviceName,
-  deviceData,
-  onChange
-}) => {
-  const dimensions = `${deviceData.width}FT x ${deviceData.depth}FT`;
-  const energyOutput = `${deviceData.energy} MWh`;
-  const costPerUnit = `${formatCurrency(deviceData.cost)}/unit`
-
-  return (
-    <div className="device-row">
-      <div className="device-row-top">
-        <Text variant="h2" style={{ width: '33%' }}>{deviceName.toUpperCase()}</Text>
-        <Text variant="h3" style={{ width: '25%' }}>{dimensions}</Text>
-        <Text variant="h3">{energyOutput}</Text>
-        <Text variant="h3" style={{ fontSize: '14px', flex: 1, textAlign: 'right' }}>{costPerUnit}</Text>
-      </div>
-      <div className="device-row-bottom">
-        {/* image here */}
-        <p>image</p>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Text variant="h3" style={{ fontSize: '14px' }}>Amount:</Text>
-          <input
-            className="input"
-            value={deviceData.amount ?? 0}
-            onChange={e => onChange(e.target.value)}
-            type="number"
-            min={0}
-            disabled={deviceName === DeviceName.TRANSFORMER}
-          />
-        </div>
-      </div>
     </div>
   );
 };
