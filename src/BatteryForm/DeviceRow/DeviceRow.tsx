@@ -36,6 +36,9 @@ const DeviceRow: React.FC<Props> = ({
             className="input"
             value={deviceData.amount ?? 0}
             onChange={e => onChange(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === '.') e.preventDefault();
+            }}
             type="number"
             min={0}
             disabled={deviceName === DeviceName.TRANSFORMER}
