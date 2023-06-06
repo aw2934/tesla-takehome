@@ -3,9 +3,11 @@ import './OrderTotals.css'
 import Text from '../Text';
 import { FormData } from '../types';
 import { aggregateTotals } from './utils';
+import { LayoutData } from '../RightPane/utils';
 
 interface Props {
   order: FormData;
+  siteLayoutData: LayoutData[][];
 }
 
 export interface TotalsBlockProps {
@@ -13,8 +15,8 @@ export interface TotalsBlockProps {
   value: string | number;
 }
 
-const OrderTotals: React.FC<Props> = ({ order }) => {
-  const totals = aggregateTotals(order);
+const OrderTotals: React.FC<Props> = ({ order, siteLayoutData }) => {
+  const totals = aggregateTotals(order, siteLayoutData);
   return (
     <div className="order-totals">
       <Text variant="h1">Totals</Text>

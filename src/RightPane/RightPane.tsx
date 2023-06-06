@@ -23,7 +23,7 @@ const RightPane: React.FC<Props> = ({ order }) => {
 
   return (
     <div className="right-pane">
-      <OrderTotals order={order} />
+      <OrderTotals order={order} siteLayoutData={siteLayoutData} />
       <SiteLayout siteLayoutData={siteLayoutData} />
     </div>
   );
