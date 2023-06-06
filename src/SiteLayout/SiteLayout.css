@@ -1,0 +1,9 @@
+.site-layout-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: #E6DBD05F;
+  border-radius: 8px;
+  margin-top: 16px;
+  flex: 1;
+}
