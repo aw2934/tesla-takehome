@@ -5,7 +5,7 @@ import { DeviceName } from '../types';
 import Text from '../Text';
 import { BATTERY_COLOR_MAP } from '../constants';
 
-interface Props {
+export interface SiteLayoutProps {
   siteLayoutData: LayoutData[][];
 }
 
@@ -17,14 +17,14 @@ interface BaseItemProps extends LayoutItemProps {
   width: string;
 }
 
-const SiteLayout: React.FC<Props> = ({ siteLayoutData }) => {
+const SiteLayout: React.FC<SiteLayoutProps> = ({ siteLayoutData }) => {
   return (
     <div className="site-layout-container">
       <Text variant="h1" style={{ marginBottom: '8px' }}>Site Layout:</Text>
       {siteLayoutData.map((row, i) => (
         // I'm aware that i is a suboptimal key, but given the use case,
         // it shouldn't cause any issues here
-        <div className="site-layout-row" key={i}>
+        <div className="site-layout-row" key={i} data-testid="site-layout-row">
           {row.map((item, j) => (
             <LayoutItem layoutItem={item} key={`${item.deviceName}${i}${j}`} />
           ))}
@@ -65,6 +65,7 @@ const BaseItem: React.FC<BaseItemProps> = ({ width, layoutItem }) => {
       }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      data-testid="layout-item"
     >
       {isHovering && (
         <div className="tooltip">
