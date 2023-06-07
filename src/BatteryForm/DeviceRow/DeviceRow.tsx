@@ -4,6 +4,7 @@ import { BatteryData, DeviceName } from '../../types';
 import { formatCurrency } from '../utils';
 import './DeviceRow.css';
 import { BATTERY_COLOR_MAP } from '../../constants';
+import { DetailBlockLabels } from './constants';
 
 interface Props {
   deviceName: string;
@@ -26,12 +27,15 @@ const DeviceRow: React.FC<Props> = ({
       style={{
         border: `2px solid ${BATTERY_COLOR_MAP[deviceName as DeviceName]}`
       }}
+      data-testid="device-row"
     >
-      <Text variant="h3" style={{ textAlign: 'center' }}>{deviceName.toUpperCase()}</Text>
+      <Text variant="h3" style={{ textAlign: 'center' }}>
+        {deviceName.toUpperCase()}
+      </Text>
       <div className="device-details">
-        <DetailBlock label="Dimensions" value={dimensions} />
-        <DetailBlock label="Energy Density" value={energyDensity} />
-        <DetailBlock label="Price" value={costPerUnit} />
+        <DetailBlock label={DetailBlockLabels.DIMENSIONS} value={dimensions} />
+        <DetailBlock label={DetailBlockLabels.ENERGY_DENSITY} value={energyDensity} />
+        <DetailBlock label={DetailBlockLabels.PRICE} value={costPerUnit} />
       </div>
       <div className="input-container">
           <Text variant="h4">Quantity:</Text>
