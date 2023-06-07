@@ -20,6 +20,7 @@ interface BaseItemProps extends LayoutItemProps {
 const SiteLayout: React.FC<Props> = ({ siteLayoutData }) => {
   return (
     <div className="site-layout-container">
+      <Text variant="h1" style={{ marginBottom: '8px' }}>Site Layout:</Text>
       {siteLayoutData.map((row, i) => (
         // I'm aware that i is a suboptimal key, but given the use case,
         // it shouldn't cause any issues here

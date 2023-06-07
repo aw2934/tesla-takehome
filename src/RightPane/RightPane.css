@@ -1,5 +1,6 @@
 .right-pane {
-  flex: 1;
+  flex: 4;
   overflow-y: hidden;
   border-radius: 8px;
+  height: calc(100vh - 32px);
 }
