@@ -6,12 +6,12 @@
 
 .form {
   background-color: var(--background-secondary);
-  width: 33%;
+  flex: 3;
   padding: 16px;
   margin-right: 16px;
   border-radius: 16px;
   box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 16px;
-  max-height: 90vh;
+  max-height: calc(100vh - 32px);
 }

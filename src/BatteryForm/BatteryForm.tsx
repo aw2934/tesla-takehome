@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { DeviceName, FormData } from '../types';
-import Text from '../Text';
-import './BatteryForm.css';
 import { getTransformerCount } from './utils';
 import { DeviceRow } from './DeviceRow';
 
@@ -31,37 +29,29 @@ const BatteryForm: React.FC<Props> = ({ order, setOrder }) => {
 
   return (
     <div>
-      <div className="table-header">
-        <div style={{ width: '33%' }} />
-        <Text variant="h3" style={{ width: '25%' }}>Dimensions</Text>
-        <Text variant="h3" style={{ flex: 1 }}>Energy Density</Text>
-        <Text variant="h3">Price</Text>
-      </div>
-      <>
-        {orderValues.map(([deviceName, deviceData]) => {
-          const onChange = (value: string) => {
-            let numValue = Number(value);
-            if (Number.isNaN(numValue) || numValue < 0) numValue = 0;
+      {orderValues.map(([deviceName, deviceData]) => {
+        const onChange = (value: string) => {
+          let numValue = Number(value);
+          if (Number.isNaN(numValue) || numValue < 0) numValue = 0;
 
-            setOrder({
-              ...order,
-              [deviceName]: {
-                ...order[deviceName as DeviceName],
-                amount: Number(value),
-              }
-            });
-          };
+          setOrder({
+            ...order,
+            [deviceName]: {
+              ...order[deviceName as DeviceName],
+              amount: Number(value),
+            }
+          });
+        };
 
-          return (
-            <DeviceRow
-              key={deviceName}
-              deviceName={deviceName}
-              deviceData={deviceData}
-              onChange={onChange}
-            />
-          );
-        })}
-      </>
+        return (
+          <DeviceRow
+            key={deviceName}
+            deviceName={deviceName}
+            deviceData={deviceData}
+            onChange={onChange}
+          />
+        );
+      })}
     </div>
   );
 };

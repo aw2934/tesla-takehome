@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Variant = 'body1' | 'body2' | 'h1' | 'h2' | 'h3';
+type Variant = 'body1' | 'body2' | 'h1' | 'h2' | 'h3' | 'h4';
 
 interface Props {
   children: string | number;
@@ -25,6 +25,10 @@ const VARIANT_STYLES = {
   },
   h3: {
     fontSize: '18px',
+    fontWeight: 600,
+  },
+  h4: {
+    fontSize: '15px',
     fontWeight: 600,
   },
 };

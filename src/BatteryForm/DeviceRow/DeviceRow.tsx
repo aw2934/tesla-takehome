@@ -17,7 +17,7 @@ const DeviceRow: React.FC<Props> = ({
   onChange
 }) => {
   const dimensions = `${deviceData.width}FT x ${deviceData.depth}FT`;
-  const energyOutput = `${deviceData.energy} MWh`;
+  const energyDensity = `${deviceData.energy} MWh`;
   const costPerUnit = `${formatCurrency(deviceData.cost)}/unit`
 
   return (
@@ -27,17 +27,14 @@ const DeviceRow: React.FC<Props> = ({
         border: `2px solid ${BATTERY_COLOR_MAP[deviceName as DeviceName]}`
       }}
     >
-      <div className="device-row-top">
-        <Text variant="h2" style={{ width: '33%' }}>{deviceName.toUpperCase()}</Text>
-        <Text variant="h3" style={{ width: '25%' }}>{dimensions}</Text>
-        <Text variant="h3">{energyOutput}</Text>
-        <Text variant="h3" style={{ fontSize: '14px', flex: 1, textAlign: 'right' }}>{costPerUnit}</Text>
+      <Text variant="h3" style={{ textAlign: 'center' }}>{deviceName.toUpperCase()}</Text>
+      <div className="device-details">
+        <DetailBlock label="Dimensions" value={dimensions} />
+        <DetailBlock label="Energy Density" value={energyDensity} />
+        <DetailBlock label="Price" value={costPerUnit} />
       </div>
-      <div className="device-row-bottom">
-        {/* image here */}
-        <p>image</p>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Text variant="h3" style={{ fontSize: '14px' }}>Amount:</Text>
+      <div className="input-container">
+          <Text variant="h4">Quantity:</Text>
           <input
             className="input"
             value={deviceData.amount ?? 0}
@@ -50,9 +47,18 @@ const DeviceRow: React.FC<Props> = ({
             disabled={deviceName === DeviceName.TRANSFORMER}
           />
         </div>
-      </div>
     </div>
   );
 };
+
+const DetailBlock: React.FC<{ label: string; value: string }> = ({
+  label,
+  value,
+}) => (
+  <div>
+    <Text variant="h4" style={{ color: '#51504D' }}>{label}</Text>
+    <Text style={{ fontWeight: 'bold', marginTop: 2 }}>{value}</Text>
+  </div>
+);
 
 export default DeviceRow;
