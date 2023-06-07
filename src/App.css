@@ -13,7 +13,7 @@
   box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 16px;
-  max-height: calc(100vh - 32px);
+  height: fit-content;
 }
 
 @media screen and (max-width: 900px) {
