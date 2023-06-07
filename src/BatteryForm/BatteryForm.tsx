@@ -33,12 +33,13 @@ const BatteryForm: React.FC<Props> = ({ order, setOrder }) => {
         const onChange = (value: string) => {
           let numValue = Number(value);
           if (Number.isNaN(numValue) || numValue < 0) numValue = 0;
+          if (numValue > 1000) numValue = 1000;
 
           setOrder({
             ...order,
             [deviceName]: {
               ...order[deviceName as DeviceName],
-              amount: Number(value),
+              amount: numValue,
             }
           });
         };

@@ -38,16 +38,17 @@ const DeviceRow: React.FC<Props> = ({
         <DetailBlock label={DetailBlockLabels.PRICE} value={costPerUnit} />
       </div>
       <div className="input-container">
-          <Text variant="h4">Quantity:</Text>
+          <Text variant="h4">Quantity (up to 1,000):</Text>
           <input
             className="input"
-            value={deviceData.amount ?? 0}
+            value={deviceData.amount || ''}
             onChange={e => onChange(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === '.') e.preventDefault();
             }}
             type="number"
             min={0}
+            max={1000}
             disabled={deviceName === DeviceName.TRANSFORMER}
           />
         </div>
