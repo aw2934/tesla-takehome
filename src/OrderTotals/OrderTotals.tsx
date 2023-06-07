@@ -5,7 +5,7 @@ import { FormData } from '../types';
 import { aggregateTotals } from './utils';
 import { LayoutData } from '../RightPane/utils';
 
-interface Props {
+export interface OrderTotalsProps {
   order: FormData;
   siteLayoutData: LayoutData[][];
 }
@@ -15,7 +15,7 @@ export interface TotalsBlockProps {
   value: string | number;
 }
 
-const OrderTotals: React.FC<Props> = ({ order, siteLayoutData }) => {
+const OrderTotals: React.FC<OrderTotalsProps> = ({ order, siteLayoutData }) => {
   const totals = aggregateTotals(order, siteLayoutData);
   return (
     <div className="order-totals">
