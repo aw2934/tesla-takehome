@@ -16,4 +16,3 @@ export enum DeviceName {
 }
 
 export type FormData = Record<DeviceName, BatteryData>;
-
