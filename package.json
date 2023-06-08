@@ -40,8 +40,11 @@
     ]
   },
   "jest": {
-    "watchPathIgnorePatterns" : [
+    "watchPathIgnorePatterns": [
       "testFixtures.ts"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.0-placeholder-for-preset-env.2"
   }
 }
